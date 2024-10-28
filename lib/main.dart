@@ -1,42 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_places_app/pages/places.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_places_app/pages/add_place_page.dart';
-import 'package:flutter_places_app/pages/places_list_page.dart';
-import 'package:flutter_places_app/provider/great_places.dart';
+final colorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 102, 6, 247),
+  brightness: Brightness.dark,
+  surface: const Color.fromARGB(255, 56, 49, 66),
+);
 
-void main() => runApp(const MyApp());
+final theme = ThemeData().copyWith(
+    scaffoldBackgroundColor: colorScheme.surface,
+    colorScheme: colorScheme,
+    textTheme: GoogleFonts.ubuntuCondensedTextTheme().copyWith(
+      titleSmall: GoogleFonts.ubuntuCondensed(
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: GoogleFonts.ubuntuCondensed(
+        fontWeight: FontWeight.bold,
+      ),
+      titleLarge: GoogleFonts.ubuntuCondensed(
+        fontWeight: FontWeight.bold,
+      ),
+    ));
+
+void main() => runApp(
+      const ProviderScope(
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final myColorScheme = ColorScheme(
-      primary: Colors.indigo,
-      secondary: Colors.amber,
-      surface: Colors.white,
-      background: Colors.grey[200]!,
-      error: Colors.red,
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
-      onSurface: Colors.black,
-      onBackground: Colors.black,
-      onError: Colors.white,
-      brightness: Brightness.light,
-    );
-    return ChangeNotifierProvider.value(
-      value: GreatPlaces(),
-      child: MaterialApp(
-        title: 'Great Places',
-        theme: ThemeData(
-          colorScheme: myColorScheme,
-        ),
-        home: PlacesListPage(),
-        routes: {
-          AddPlacePage.routeName:(context) => AddPlacePage(),
-        },
-      ),
+    return MaterialApp(
+      title: 'Great Places',
+      theme: theme,
+      home: const PlacesPage(),
     );
   }
 }
