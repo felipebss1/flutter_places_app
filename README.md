@@ -1,16 +1,29 @@
-# flutter_places_app
+# Flutter Places App
 
-A new Flutter project.
+This is a Flutter project that shows a list of places and allows the user to add new places. The user can see the places in a map and also see the details of each place.
 
-## Getting Started
+This project was made for studies purposes, through AcadeMind Course.
 
-This project is a starting point for a Flutter application.
+## How it works
 
-A few resources to get you started if this is your first Flutter project:
+The project uses the Google Maps API to show the places in a map. The user can add new places by clicking in the "Add place" button. The user can see the details of each place by clicking in the place in the list.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to use Google Maps API
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+In order to use Google Maps API, it'll be necessary to change some files:
+
+* In "AndroidManifest.xml", change the line 7 to add the API key:
+  <meta-data android:name="com.google.android.geo.API_KEY"
+             android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE"/>
+* In "AppDelegate.swift", change the line 11 to add the API key:
+  GMSServices.provideAPIKey("YOUR_GOOGLE_MAPS_API_KEY_HERE")
+* In "places_details_page.dart", change the line 13 to add the API key:
+  static const String _GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY_HERE";
+* In "location_input.dart", change the lines 29 and 34 to add the API key:
+  static const String _GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY_HERE";
+  final _GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY_HERE";
+
+## Help
+
+This project was made with the help of Codeium and Blackbox AI. I would like to thanks AcadeMind for the course and the support.
+
