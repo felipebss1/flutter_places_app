@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_places_app/models/place.dart';
+import 'package:flutter_places_app/pages/map.dart';
 
 class PlaceDetailsPage extends StatelessWidget {
   const PlaceDetailsPage({super.key, required this.place});
@@ -34,9 +35,21 @@ class PlaceDetailsPage extends StatelessWidget {
             right: 0,
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: NetworkImage(locationImage),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MapPage(
+                          location: place.location,
+                          isSelecting: false,
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundImage: NetworkImage(locationImage),
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
